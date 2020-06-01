@@ -3,25 +3,22 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-class UserSchema extends Schema {
+class CompraMedicamentoSchema extends Schema {
   up () {
-    this.create('users', (table) => {
+    this.create('compra_medicamentos', (table) => {
       table.increments()
-      table.string('username', 80).notNullable().unique()
-      table.string('email', 254).notNullable().unique()
-      table.string('password', 60).notNullable()
       table
-        .integer('cliente_id')
+        .integer('compra_id')
         .unsigned()
         .references('id')
         .inTable('clientes')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table
-        .integer('funcionario_id')
+        .integer('medicamento_id')
         .unsigned()
         .references('id')
-        .inTable('funcionarios')
+        .inTable('medicamentos')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table.timestamps()
@@ -29,8 +26,8 @@ class UserSchema extends Schema {
   }
 
   down () {
-    this.drop('users')
+    this.drop('compra_medicamentos')
   }
 }
 
-module.exports = UserSchema
+module.exports = CompraMedicamentoSchema
