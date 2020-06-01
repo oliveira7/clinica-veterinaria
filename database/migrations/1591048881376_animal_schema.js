@@ -3,13 +3,10 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-class UserSchema extends Schema {
+class AnimalSchema extends Schema {
   up () {
-    this.create('users', (table) => {
+    this.create('animais', (table) => {
       table.increments()
-      table.string('username', 80).notNullable().unique()
-      table.string('email', 254).notNullable().unique()
-      table.string('password', 60).notNullable()
       table
         .integer('cliente_id')
         .unsigned()
@@ -18,19 +15,22 @@ class UserSchema extends Schema {
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table
-        .integer('funcionario_id')
+        .integer('prontuario_id')
         .unsigned()
         .references('id')
-        .inTable('funcionarios')
+        .inTable('prontuarios')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
+      table.string('nome', 50).notNullable()
+      table.string('especie', 50).notNullable()
+      table.string('raca', 50)
       table.timestamps()
     })
   }
 
   down () {
-    this.drop('users')
+    this.drop('animais')
   }
 }
 
-module.exports = UserSchema
+module.exports = AnimalSchema
