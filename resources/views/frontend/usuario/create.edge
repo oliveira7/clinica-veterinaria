@@ -1,0 +1,106 @@
+@layout('layouts.master')
+
+@section('content')
+@include('layouts.pao')
+
+<div class="p-responsive mt-4 mt-md-8"> 
+  <div class="container py-3"> 
+    <form method="post" action="{{route('users.store')}}">
+      {{ csrfField() }}
+      <div class="form-group">
+        <label for="nomeCompleto">Nome Completo</label>
+        <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto">
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="cidade">Cidade</label>
+            <input type="text" class="form-control" id="cidade" name="cidade">
+          </div>
+          <div class="col">
+            <label for="bairro">Bairro</label>
+            <input type="text" class="form-control" id="bairro" name="bairro">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="rua">Rua</label>
+            <input type="text" class="form-control" id="rua"  name="rua">
+          </div>
+          <div class="col-1">
+            <label for="numero">Nº</label>
+            <input type="number" class="form-control" id="numero" name="numero">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email">
+          </div>
+          <div class="col">
+            <label for="senha">Senha</label>
+          <input type="password" class="form-control sm" id="senha"  name="senha">
+          </div>
+        </div>
+      </div>
+      <div class="form-group input-group-sm">
+        <div class="row">
+          <div class="col">
+            <label for="cpf">CPF</label>
+            <input type="text" class="form-control" id="cpf"  name="cpf">
+          </div>
+          <div class="col">
+            <label for="telefone">Telefone</label>
+            <input type="text" class="form-control" id="telefone"  name="telefone">
+          </div>
+        </div>
+      </div>
+      <div class="form-group ">
+        <label for="telefone">Tipo Usuário</label>
+        <div class="col">
+          <input name="cliente" type="radio" value="cliente"/> 
+          <label for="cliente">Cliente</label>
+        </div>
+        <div class="col">
+          <input name="funcionario" type="radio" value="funcionario"/> 
+          <label for="funcionario">Funcionario</label>
+        </div>
+      </div>
+      <div id="cargo"></div>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+        <a type="button" href="{{'../'}}" class="btn btn-secondary btn-sm">Voltar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $('input[type=radio]').change(function(e) {
+        $('input[type=radio]:checked').not(this).prop('checked', false);
+        if(e.target.value == 'funcionario'){
+          let html  = '<div class="form-group">'+
+                        '<div class="input-group mb-3">'+
+                          '<div class="input-group-prepend">'+
+                            '<label class="input-group-text" for="cargo">Cargos</label>'+
+                          '</div>'+
+                          '<select class="custom-select" id="cargo">'+
+                            '<option selected>Escolha...</option>'+
+                            '<option value="1">Veterinário</option>'+
+                            '<option value="2">Atendente</option>'+
+                          '</select>'+
+                        '</div>'+
+                      '</div>';
+           
+          $( "#cargo" ).append(html);
+        }else{
+          $('#cargo').empty();
+        }
+    });
+});
+</script>
+
+@endsection
