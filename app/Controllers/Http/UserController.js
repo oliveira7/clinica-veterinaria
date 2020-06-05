@@ -87,7 +87,88 @@ class UserController {
     return response.redirect('/cliente/'+params.id+'/animal', { animais: animais.toJSON() });
   }
 
+  async funcionarioEdit({ params, response, view }) {
+    const funcionario = await Funcionario
+      .query()
+      .where('id', parseInt(params.id))
+      .with('usuario.endereco')
+      .first();
+     
+    return response.send(view.render('frontend.usuario.funcionario-edit', { funcionario: funcionario.toJSON(), idFuncionario: params.id }));
+  }
+
+  async funcionarioUpdate({ params, request, response }) {
+    const data = request.all();
+
+    const funcionario = await Funcionario
+    .query()
+    .where('id', parseInt(params.id))
+    .with('usuario.endereco')
+    .first();
+
+    funcionario.cargo = data.cargo
+    await funcionario.save()
+
+    const json = { funcionario: funcionario.toJSON() };
+  
+    const usuario = await Usuario.find(json.funcionario.usuario.id);
+    usuario.nome_completo = data.nomeCompleto
+    usuario.email = data.email
+    usuario.password = data.senha
+    usuario.cpf = data.cpf
+    usuario.telefone = data.telefone
+    await usuario.save()
+
+    const endereco = await Endereco.find(json.funcionario.usuario.endereco.id);
+    endereco.cidade = data.cidade
+    endereco.bairro = data.bairro
+    endereco.rua = data.rua
+    endereco.numero = data.numero
+    await endereco.save()
+
+    const funcionarios = await Funcionario.all();
+    return response.redirect('/funcionario', { funcionarios: funcionarios.toJSON() });
+  }
  
+  async clienteEdit({ params, response, view }) {
+    const cliente = await Cliente
+      .query()
+      .where('id', parseInt(params.id))
+      .with('usuario.endereco')
+      .first();
+     
+    return response.send(view.render('frontend.usuario.cliente-edit', { cliente: cliente.toJSON(), idCliente: params.id }));
+  }
+
+  async clienteUpdate({ params, request, response }) {
+    const data = request.all();
+
+    const cliente = await Cliente
+    .query()
+    .where('id', parseInt(params.id))
+    .with('usuario.endereco')
+    .first();
+
+    const json = { cliente: cliente.toJSON() };
+  
+    const usuario = await Usuario.find(json.cliente.usuario.id);
+    usuario.nome_completo = data.nomeCompleto
+    usuario.email = data.email
+    usuario.password = data.senha
+    usuario.cpf = data.cpf
+    usuario.telefone = data.telefone
+    await usuario.save()
+
+    const endereco = await Endereco.find(json.cliente.usuario.endereco.id);
+    endereco.cidade = data.cidade
+    endereco.bairro = data.bairro
+    endereco.rua = data.rua
+    endereco.numero = data.numero
+    await endereco.save()
+
+    const clientes = await Cliente.all();
+    return response.redirect('/cliente', { clientes: clientes.toJSON() });
+  }
 
   async login ({ request, auth }) {
     console.log(request.all());

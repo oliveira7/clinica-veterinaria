@@ -5,31 +5,31 @@
 
 <div class="p-responsive mt-4 mt-md-8"> 
   <div class="container py-3"> 
-    <form method="post" action="{{route('user.store')}}">
+    <form method="post" action="{{route('funcionario.update', { id: idFuncionario })}}">
       {{ csrfField() }}
       <div class="form-group">
         <label for="nomeCompleto">Nome Completo</label>
-        <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" required>
+        <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" value={{funcionario.usuario.nome_completo}} required>
       </div>
       <div class="form-group">
         <div class="row">
           <div class="col">
             <label for="cidade">Cidade</label>
-            <input type="text" class="form-control" id="cidade" name="cidade" required>
+            <input type="text" class="form-control" id="cidade" name="cidade" value={{funcionario.usuario.endereco.cidade}} required>
           </div>
           <div class="col">
             <label for="bairro">Bairro</label>
-            <input type="text" class="form-control" id="bairro" name="bairro" required>
+            <input type="text" class="form-control" id="bairro" name="bairro" value={{funcionario.usuario.endereco.bairro}} required>
           </div>
         </div>
         <div class="row">
           <div class="col">
             <label for="rua">Rua</label>
-            <input type="text" class="form-control" id="rua"  name="rua" required>
+            <input type="text" class="form-control" id="rua"  name="rua" value={{funcionario.usuario.endereco.rua}} required>
           </div>
           <div class="col-2">
             <label for="numero">Nº</label>
-            <input type="number" class="form-control" id="numero" name="numero" required>
+            <input type="number" class="form-control" id="numero" name="numero" value={{funcionario.usuario.endereco.numero}} required>
           </div>
         </div>
       </div>
@@ -37,11 +37,11 @@
         <div class="row">
           <div class="col">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            <input type="email" class="form-control" id="email" name="email" value={{funcionario.usuario.email}} required>
           </div>
           <div class="col">
             <label for="senha">Senha</label>
-          <input type="password" class="form-control sm" id="senha"  name="senha" required>
+          <input type="password" class="form-control sm" id="senha" name="senha" value="" required>
           </div>
         </div>
       </div>
@@ -49,23 +49,24 @@
         <div class="row">
           <div class="col">
             <label for="cpf">CPF</label>
-            <input type="text" class="form-control" id="cpf"  name="cpf" required>
+            <input type="text" class="form-control" id="cpf"  name="cpf" value={{funcionario.usuario.cpf}} required>
           </div>
           <div class="col">
             <label for="telefone">Telefone</label>
-            <input type="text" class="form-control" id="telefone"  name="telefone" required>
+            <input type="text" class="form-control" id="telefone"  name="telefone" value={{funcionario.usuario.telefone}} required>
           </div>
         </div>
       </div>
-      <div class="form-group ">
-        <label for="telefone">Tipo Usuário</label>
-        <div class="col">
-          <input name="tipo" type="radio" value="cliente"> 
-          <label for="cliente">Cliente</label>
-        </div>
-        <div class="col">
-          <input name="tipo" type="radio" value="funcionario"> 
-          <label for="funcionario">Funcionário</label>
+      <div class="form-group">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="cargo">Cargos</label>
+          </div>
+          <select class="custom-select" id="cargo" name="cargo" required>
+            <option readonly selected>Escolha...</option>
+            <option value="Veterinário" {{ funcionario.cargo == 'Veterinário' ? 'selected' : '' }}>Veterinário</option>
+            <option value="Atendente" {{ funcionario.cargo == 'Atendente' ? 'selected' : '' }}>Atendente</option>
+          </select>
         </div>
       </div>
       <div id="cargo"></div>
@@ -76,31 +77,5 @@
     </form>
   </div>
 </div>
-
-<script>
-  $(document).ready(function () {
-    $('input[type=radio]').change(function(e) {
-        $('input[type=radio]:checked').not(this).prop('checked', false);
-        if(e.target.value == 'funcionario'){
-          let html  = '<div class="form-group">'+
-                        '<div class="input-group mb-3">'+
-                          '<div class="input-group-prepend">'+
-                            '<label class="input-group-text" for="cargo">Cargos</label>'+
-                          '</div>'+
-                          '<select class="custom-select" id="cargo" name="cargo" required>'+
-                            '<option readonly selected>Escolha...</option>'+
-                            '<option value="Veterinário">Veterinário</option>'+
-                            '<option value="Atendente">Atendente</option>'+
-                          '</select>'+
-                        '</div>'+
-                      '</div>';
-           
-          $( "#cargo" ).append(html);
-        }else{
-          $('#cargo').empty();
-        }
-    });
-});
-</script>
 
 @endsection

@@ -16,7 +16,6 @@
 </style>
 
 <div class="container mt-3">
-  <div class="py-2"></div>
   <table class="table text-center">
     <thead>
       <tr>
@@ -42,8 +41,8 @@
           <td>{{medicamento.preco_venda}}</td>
           <td>{{medicamento.local_fisico}}</td>
           <td>{{medicamento.quantidade_estoque}}</td>
-          <td class="pl-0 pr-0"><a href="{{ route('medicamento.edit', { id: medicamento.id }) }}"><i class="fas fa-edit"></i></a></td>
-          <td class="pl-0 pr-0"><a href=""><i class="fas fa-trash"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color: blue;" href="{{ route('medicamento.edit', { id: medicamento.id }) }}"><i class="fas fa-edit"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color: red;" href=""><i class="fas fa-trash"></i></a></td>
         </tr>
       @endeach
     </tbody>

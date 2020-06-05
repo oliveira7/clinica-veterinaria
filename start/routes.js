@@ -31,7 +31,7 @@ Route.get('funcionario/:id/edit', 'UserController.funcionarioEdit', ({ params })
   return `User ${params.id}`
 }).as('funcionario.edit');
 
-Route.get('cliente/:id', 'UserController.funcionarioUpdate', ({ params }) => {
+Route.post('funcionario/:id', 'UserController.funcionarioUpdate', ({ params }) => {
   return `User ${params.id}`
 }).as('funcionario.update');
 
@@ -41,9 +41,9 @@ Route.get('cliente/:id/edit', 'UserController.clienteEdit', ({ params }) => {
   return `User ${params.id}`
 }).as('cliente.edit');
 
-Route.get('cliente/:id', 'UserController.clienteUpdate', ({ params }) => {
+Route.post('cliente/:id', 'UserController.clienteUpdate', ({ params }) => {
   return `User ${params.id}`
-}).as('funcionario.update');
+}).as('cliente.update');
 
 //animal
 Route.get('cliente/:id/animal', 'AnimalController.index', ({ params }) => {

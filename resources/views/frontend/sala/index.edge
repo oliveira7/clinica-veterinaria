@@ -19,7 +19,6 @@
   <div class="text-right">
     {{--  <a type="button" href="{{ route('animal.create', { id: cliente_id }) }}" class="btn btn-primary btn-sm">Novo Animal</a>  --}}
   </div>
-  <div class="py-2"></div>
   <table class="table text-center">
     <thead>
       <tr>
@@ -35,8 +34,8 @@
           <th scope="row">{{ ($loop.index + 1) }}</th>
           <td>{{sala.numero}}</td>
           <td>{{sala.descricao}}</td>
-          <td class="pl-0 pr-0"><a href="{{ route('sala.edit', { id: sala.id }) }}"><i class="fas fa-edit"></i></a></td>
-          <td class="pl-0 pr-0"><a href="{{ route('sala.destroy', { id: sala.id }) }}"><i class="fas fa-trash"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color: blue;" href="{{ route('sala.edit', { id: sala.id }) }}"><i class="fas fa-edit"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color: red;" href="{{ route('sala.destroy', { id: sala.id }) }}"><i class="fas fa-trash"></i></a></td>
         </tr>
       @endeach
     </tbody>

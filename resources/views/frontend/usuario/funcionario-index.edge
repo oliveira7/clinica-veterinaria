@@ -37,8 +37,8 @@
           <td>{{funcionario.usuario.email}}</td>
           <td>{{funcionario.usuario.telefone}}</td>
           <td>{{funcionario.cargo}}</td>
-          <td><a href="{{ route('usuario.edit', { id: funcionario.id }) }}"><i class="fas fa-edit"></i></a></td>
-          <td><a href="{{ route('usuario.destroy', { id: funcionario.id }) }}"><i class="fas fa-trash"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color: blue;" href="{{ route('funcionario.edit', { id: funcionario.id }) }}"><i class="fas fa-edit"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color: red;" href="{{ route('funcionario.destroy', { id: funcionario.id }) }}"><i class="fas fa-trash"></i></a></td>
         </tr>
       @endeach
     </tbody>

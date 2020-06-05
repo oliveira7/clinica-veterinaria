@@ -19,7 +19,6 @@
   <div class="text-right">
     <a type="button" href="{{ route('animal.create', { id: cliente_id }) }}" class="btn btn-primary btn-sm">Novo Animal</a>
   </div>
-  <div class="py-2"></div>
   <table class="table text-center">
     <thead>
       <tr>
@@ -37,9 +36,9 @@
           <td>{{animal.nome}}</td>
           <td>{{animal.especie}}</td>
           <td>{{animal.raca}}</td>
-          <td class="pl-0 pr-0"><a href="{{ route('animal.edit', { id: cliente_id,  idAnimal: animal.id }) }}"><i class="fas fa-edit"></i></a></td>
-          <td class="pl-0 pr-0"><a href=""><i class="fas fa-notes-medical"></i></a></td>
-          <td class="pl-0 pr-0"><a href=""><i class="fas fa-trash"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color: blue;" href="{{ route('animal.edit', { id: cliente_id,  idAnimal: animal.id }) }}"><i class="fas fa-edit"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color:lightslategray" href=""><i class="fas fa-notes-medical"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color: red;" href=""><i class="fas fa-trash"></i></a></td>
         </tr>
       @endeach
     </tbody>

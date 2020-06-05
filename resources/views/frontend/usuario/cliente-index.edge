@@ -35,9 +35,9 @@
           <td>{{cliente.usuario.endereco.bairro}} {{cliente.usuario.endereco.rua}} - {{cliente.usuario.endereco.numero}}</td>
           <td>{{cliente.usuario.email}}</td>
           <td>{{cliente.usuario.telefone}}</td>
-          <td><a href="{{ route('animal.index', { id: cliente.id }) }}"><i class="fas fa-paw"></i></a></td>
-          <td><a href="{{ route('usuario.edit', { id: cliente.id }) }}"><i class="fas fa-edit"></i></a></td>
-          <td><a href="{{ route('usuario.destroy', { id: cliente.id }) }}"><i class="fas fa-trash"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color: green;" href="{{ route('animal.index', { id: cliente.id }) }}"><i class="fas fa-paw"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color: blue;" href="{{ route('cliente.edit', { id: cliente.id }) }}"><i class="fas fa-edit"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color: red;" href="{{ route('cliente.destroy', { id: cliente.id }) }}"><i class="fas fa-trash"></i></a></td>
         </tr>
       @endeach
     </tbody>
