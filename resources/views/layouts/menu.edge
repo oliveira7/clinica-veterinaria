@@ -14,20 +14,31 @@
                   Usuários
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownFuncionarios">
-                <a class="dropdown-item" href="{{ route('users.create') }}">Novo Usuário</a>
-                <a class="dropdown-item" href="{{ route('users.funcionarioIndex') }}">Funcionários</a>
-                <a class="dropdown-item" href="{{ route('users.clienteIndex') }}">Clientes</a>
+                <a class="dropdown-item" href="{{ route('user.funcionarioIndex') }}">Funcionários</a>
+                <a class="dropdown-item" href="{{ route('user.clienteIndex') }}">Clientes</a>
+                <a class="dropdown-item" href="{{ route('user.create') }}">Novo Usuário</a>
               </div>
+          </div>
+          
+          <!-- Consulta -->
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownConsultas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Consultas
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownConsultas">
+              <a class="dropdown-item" href="">Consultas</a>
+              <a class="dropdown-item" href="">Marcar Consulta</a>
+            </div>
           </div>
           <!-- Sala -->
           <div class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdownConsultas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Consultas
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownConsultas">
-                  <a class="dropdown-item" href="../sala/index.php?action=abre_form">Cadastrar Sala</a>
-                  <a class="dropdown-item" href="../sala/index.php?action=lista">Listar Consultas</a>
-              </div>
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownSalas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Sala
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownSalas">
+              <a class="dropdown-item" href="{{ route('sala.index') }}">Salas</a>
+              <a class="dropdown-item" href="{{ route('sala.create') }}">Cadastrar Sala</a>
+            </div>
           </div>
           <!-- Medicamento -->
           <div class="nav-item dropdown">
@@ -35,18 +46,8 @@
                   Medicamentos
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownConsultas">
-                  <a class="dropdown-item" href="../medicamento/index.php?action=abre_form">Cadastrar Medicamentos</a>
-                  <a class="dropdown-item" href="../medicamento/index.php?action=lista">Listar Medicamentos</a>
-              </div>
-          </div>
-          <!-- Estoque -->
-          <div class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdownConsultas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Estoque
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownConsultas">
-                  <a class="dropdown-item" href="../estoque/index.php?action=abre_form">Incluir em Estoque</a>
-                  <a class="dropdown-item" href="../estoque/index.php?action=lista">Listar Produtos</a>
+                <a class="dropdown-item" href="{{ route('medicamento.index') }}">Medicamentos</a>
+                <a class="dropdown-item" href="{{ route('medicamento.create') }}">Cadastrar Medicamentos</a>
               </div>
           </div>
       </div>

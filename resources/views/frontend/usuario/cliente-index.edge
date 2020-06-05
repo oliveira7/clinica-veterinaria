@@ -24,7 +24,7 @@
         <th scope="col">Endereço</th>
         <th scope="col">E-mail</th>
         <th scope="col">Telefone</th>
-        <th scope="col">Ações</th>
+        <th scope="col" colspan="3">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -35,7 +35,9 @@
           <td>{{cliente.usuario.endereco.bairro}} {{cliente.usuario.endereco.rua}} - {{cliente.usuario.endereco.numero}}</td>
           <td>{{cliente.usuario.email}}</td>
           <td>{{cliente.usuario.telefone}}</td>
-          <td><a href="{{ route('animais.index', { id: cliente.id }) }}"><i class="fas fa-paw"></i></a></td>
+          <td><a href="{{ route('animal.index', { id: cliente.id }) }}"><i class="fas fa-paw"></i></a></td>
+          <td><a href="{{ route('usuario.edit', { id: cliente.id }) }}"><i class="fas fa-edit"></i></a></td>
+          <td><a href="{{ route('usuario.destroy', { id: cliente.id }) }}"><i class="fas fa-trash"></i></a></td>
         </tr>
       @endeach
     </tbody>

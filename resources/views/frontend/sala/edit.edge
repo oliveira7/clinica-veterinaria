@@ -1,0 +1,38 @@
+@layout('layouts.master')
+
+@section('content')
+@include('layouts.pages')
+
+<style>
+  footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+  }
+</style>
+
+<div class="p-responsive mt-4 mt-md-8"> 
+  <div class="container py-3"> 
+    <form method="POST" action="{{route('sala.update', { id: sala.id })}}">
+      {{ csrfField() }}
+      <div class="form-group">
+        <label for="numero">Identificação</label>
+        <input type="text" class="form-control" id="numero" name="numero" value="{{sala.numero}}" required>
+      </div>
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <textarea type="textarea" class="form-control" id="descricao" name="descricao" required>{{sala.descricao}}</textarea>
+      </div>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+        <a type="button" href="{{'/sala'}}" class="btn btn-secondary btn-sm">Voltar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+@endsection

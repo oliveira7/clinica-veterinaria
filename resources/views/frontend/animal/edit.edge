@@ -17,21 +17,21 @@
 
 <div class="p-responsive mt-4 mt-md-8"> 
   <div class="container py-3"> 
-    <form method="post" action="{{route('animal.store', { id: cliente_id })}}">
+    <form method="post" action="{{route('animal.update', { id: cliente_id, idAnimal: animal.id })}}">
       {{ csrfField() }}
       <div class="form-group">
         <label for="nome">Nome</label>
-        <input type="text" class="form-control" id="nome" name="nome" required>
+        <input type="text" class="form-control" id="nome" name="nome" value="{{animal.nome}}" required>
       </div>
       <div class="form-group">
         <div class="row">
           <div class="col">
             <label for="especie">Espécie</label>
-            <input type="text" class="form-control" id="especie" name="especie" required>
+            <input type="text" class="form-control" id="especie" name="especie" value="{{animal.especie}}" required>
           </div>
           <div class="col">
             <label for="raca">Raça</label>
-            <input type="text" class="form-control" id="raca" name="raca" required>
+            <input type="text" class="form-control" id="raca" name="raca" value="{{animal.raca}}" required>
           </div>
         </div>
       </div>

@@ -1,0 +1,79 @@
+@layout('layouts.master')
+
+@section('content')
+@include('layouts.pages')
+
+<style>
+  footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+  }
+</style>
+
+<div class="p-responsive mt-4 mt-md-8"> 
+  <div class="container py-3"> 
+    <form method="post" action="{{ route('medicamento.update', { id: medicamento.id}) }}">
+      {{ csrfField() }}
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" value="{{medicamento.nome}}" required> 
+      </div>
+      <div class="form-group">
+        <label for="composicao">Composição</label>
+        <textarea type="text" class="form-control" id="composicao" name="composicao" required>{{medicamento.composicao}}</textarea>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="laboratorio">Laboratório</label>
+            <input type="text" class="form-control" id="laboratorio" name="laboratorio" value="{{medicamento.laboratorio}}" required>
+          </div>
+          <div class="col">
+            <label for="exampleFormControlSelect1">Tipo do medicamento</label>
+            <select class="form-control" id="tipo" name="tipo" required>
+              <option readonly value="">Selecione...</option>
+              <option value="Antibiótico" {{ medicamento.tipo == 'Antibiótico' ? 'selected' : '' }}>Antibiótico</option>
+              <option value="Anti-inflamatório" {{ medicamento.tipo == 'Anti-inflamatório' ? 'selected' : '' }}>Anti-inflamatório</option>
+              <option value="Anti-histamínico" {{ medicamento.tipo == 'Anti-histamínico' ? 'selected' : '' }}>Anti-histamínico</option>
+              <option value="Ectoparasita" {{ medicamento.tipo == 'Ectoparasita' ? 'selected' : '' }}>Ectoparasita</option>
+              <option value="Corticosteróide" {{ medicamento.tipo == 'Corticosteróide' ? 'selected' : '' }}>Corticosteróide</option>
+              <option value="Ação vermífuga" {{ medicamento.tipo == 'Ação vermífuga' ? 'selected' : '' }}>Ação vermífuga</option>
+              <option value="Anti-depressivo" {{ medicamento.tipo == 'Anti-depressivo' ? 'selected' : '' }}>Anti-depressivo</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="precoVenda">Preço Venda</label>
+            <input type="number" class="form-control" id="precoVenda" name="precoVenda" value="{{medicamento.preco_venda}}" required>
+          </div>
+          <div class="col">
+            <label for="precoCompra">Preco Compra</label>
+            <input type="number" class="form-control" id="precoCompra" name="precoCompra" value="{{medicamento.preco_compra}}" required>
+          </div>
+          <div class="col">
+            <label for="localFisico">Local Fisico</label>
+            <input type="text" class="form-control" id="localFisico" name="localFisico" value="{{medicamento.local_fisico}}" required>
+          </div>
+          <div class="col-1">
+            <label for="quantidadeEstoque">Estoque</label>
+            <input type="number" class="form-control" id="quantidadeEstoque" name="quantidadeEstoque" value="{{medicamento.quantidade_estoque}}" required>
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+        <a type="button" href="{{ route('medicamento.index') }}" class="btn btn-secondary btn-sm">Voltar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+@endsection

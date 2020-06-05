@@ -1,0 +1,52 @@
+@layout('layouts.master')
+
+@section('content')
+@include('layouts.pages')
+
+<style>
+  footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+}
+</style>
+
+<div class="container mt-3">
+  <div class="py-2"></div>
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Laboratório</th>
+        <th scope="col">Preço Compra</th>
+        <th scope="col">Preço Venda</th>
+        <th scope="col">Local Fisico</th>
+        <th scope="col">Estoque</th>
+        <th scope="col" colspan="2">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      @each(medicamento in medicamentos)
+        <tr>
+          <th scope="row">{{ ($loop.index + 1) }}</th>
+          <td>{{medicamento.nome}}</td>
+          <td>{{medicamento.tipo}}</td>
+          <td>{{medicamento.laboratorio}}</td>
+          <td>{{medicamento.preco_compra}}</td>
+          <td>{{medicamento.preco_venda}}</td>
+          <td>{{medicamento.local_fisico}}</td>
+          <td>{{medicamento.quantidade_estoque}}</td>
+          <td class="pl-0 pr-0"><a href="{{ route('medicamento.edit', { id: medicamento.id }) }}"><i class="fas fa-edit"></i></a></td>
+          <td class="pl-0 pr-0"><a href=""><i class="fas fa-trash"></i></a></td>
+        </tr>
+      @endeach
+    </tbody>
+  </table>
+</div>
+@endsection

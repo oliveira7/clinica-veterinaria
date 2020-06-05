@@ -1,0 +1,79 @@
+@layout('layouts.master')
+
+@section('content')
+@include('layouts.pages')
+
+<style>
+  footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+  }
+</style>
+
+<div class="p-responsive mt-4 mt-md-8"> 
+  <div class="container py-3"> 
+    <form method="post" action="{{ route('medicamento.store') }}">
+      {{ csrfField() }}
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" required>
+      </div>
+      <div class="form-group">
+        <label for="composicao">Composição</label>
+        <textarea type="text" class="form-control" id="composicao" name="composicao" required></textarea>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="laboratorio">Laboratório</label>
+            <input type="text" class="form-control" id="laboratorio" name="laboratorio" required>
+          </div>
+          <div class="col">
+            <label for="exampleFormControlSelect1">Tipo do medicamento</label>
+            <select class="form-control" id="tipo" name="tipo" required>
+              <option readonly value="">Selecione...</option>
+              <option value="Antibiótico">Antibiótico</option>
+              <option value="Anti-inflamatório">Anti-inflamatório</option>
+              <option value="Anti-histamínico">Anti-histamínico</option>
+              <option value="Ectoparasita">Ectoparasita</option>
+              <option value="Corticosteróide">Corticosteróide</option>
+              <option value="Ação vermífuga">Ação vermífuga</option>
+              <option value="Anti-depressivo">Anti-depressivo</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="precoVenda">Preço Venda</label>
+            <input type="number" class="form-control" id="precoVenda" name="precoVenda" required>
+          </div>
+          <div class="col">
+            <label for="precoCompra">Preco Compra</label>
+            <input type="number" class="form-control" id="precoCompra" name="precoCompra" required>
+          </div>
+          <div class="col">
+            <label for="localFisico">Local Fisico</label>
+            <input type="text" class="form-control" id="localFisico" name="localFisico" required>
+          </div>
+          <div class="col-1">
+            <label for="quantidadeEstoque">Estoque</label>
+            <input type="number" class="form-control" id="quantidadeEstoque" name="quantidadeEstoque" required>
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+        <a type="button" href="{{ route('medicamento.index') }}" class="btn btn-secondary btn-sm">Voltar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+@endsection

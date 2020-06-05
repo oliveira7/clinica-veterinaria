@@ -1,0 +1,45 @@
+@layout('layouts.master')
+
+@section('content')
+@include('layouts.pages')
+
+<style>
+  footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+}
+</style>
+
+<div class="container mt-3">
+  <div class="text-right">
+    {{--  <a type="button" href="{{ route('animal.create', { id: cliente_id }) }}" class="btn btn-primary btn-sm">Novo Animal</a>  --}}
+  </div>
+  <div class="py-2"></div>
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Identificação</th>
+        <th scope="col">Descrição</th>
+        <th scope="col" colspan="2">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      @each(sala in salas)
+        <tr>
+          <th scope="row">{{ ($loop.index + 1) }}</th>
+          <td>{{sala.numero}}</td>
+          <td>{{sala.descricao}}</td>
+          <td class="pl-0 pr-0"><a href="{{ route('sala.edit', { id: sala.id }) }}"><i class="fas fa-edit"></i></a></td>
+          <td class="pl-0 pr-0"><a href="{{ route('sala.destroy', { id: sala.id }) }}"><i class="fas fa-trash"></i></a></td>
+        </tr>
+      @endeach
+    </tbody>
+  </table>
+</div>
+@endsection

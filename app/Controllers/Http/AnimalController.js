@@ -17,7 +17,7 @@ class AnimalController {
     return response.send(view.render('frontend.animal.create', { cliente_id: params.id }));
   }
 
-  async store({ params, request, response, view}) {
+  async store({ params, request, response}) {
     const data = request.all();
 
     const animal = new Animal()
@@ -27,7 +27,28 @@ class AnimalController {
     animal.cliente_id = params.id
     await animal.save();
 
-    return response.redirect('back');
+    const animais = await Animal.all();
+    return response.redirect('/cliente/'+params.id+'/animal', { animais: animais.toJSON() });
+  }
+
+  async edit({ params, response, view}) {
+    const animal = await Animal.find(parseInt(params.idAnimal));
+   
+    return response.send(view.render('frontend.animal.edit', { animal: animal, cliente_id: params.id, animal_id: params.idAnimal }));
+  }
+
+  async update({ params, request, response}) {
+    const data = request.all();
+
+    const animal = await Animal.find(parseInt(params.idAnimal));
+    animal.nome = data.nome
+    animal.especie = data.especie
+    animal.raca = data.raca
+    animal.cliente_id = params.id
+    await animal.save();
+
+    const animais = await Animal.all();
+    return response.redirect('/cliente/'+params.id+'/animal', { animais: animais.toJSON() });
   }
 }
 
