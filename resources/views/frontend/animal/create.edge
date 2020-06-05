@@ -1,0 +1,46 @@
+@layout('layouts.master')
+
+@section('content')
+@include('layouts.pages')
+
+<style>
+  footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+  }
+</style>
+
+<div class="p-responsive mt-4 mt-md-8"> 
+  <div class="container py-3"> 
+    <form method="post" action="{{route('animais.store', { id: cliente_id })}}">
+      {{ csrfField() }}
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome">
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="especie">Espécie</label>
+            <input type="text" class="form-control" id="especie" name="especie">
+          </div>
+          <div class="col">
+            <label for="raca">Raça</label>
+            <input type="text" class="form-control" id="raca" name="raca">
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+        <a type="button" href="{{'../cliente'}}" class="btn btn-secondary btn-sm">Voltar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+@endsection

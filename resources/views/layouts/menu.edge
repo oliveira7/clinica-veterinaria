@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #ffffff;">
   <div class="container">
     <a href="../" class="navbar-brand">
-      <img src="imgs/lv.png" height="60" alt="CoolBrand">
+      <img src="{{ assetsUrl('imgs/lv.png') }}" height="60" alt="CoolBrand">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -15,8 +15,8 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownFuncionarios">
                 <a class="dropdown-item" href="{{ route('users.create') }}">Novo Usuário</a>
-                  <a class="dropdown-item" href="{{ route('users.funcionarioIndex') }}">Funcionários</a>
-                  <a class="dropdown-item" href="{{ route('users.clienteIndex') }}">Clientes</a>
+                <a class="dropdown-item" href="{{ route('users.funcionarioIndex') }}">Funcionários</a>
+                <a class="dropdown-item" href="{{ route('users.clienteIndex') }}">Clientes</a>
               </div>
           </div>
           <!-- Sala -->

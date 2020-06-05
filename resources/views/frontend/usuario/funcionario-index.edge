@@ -1,14 +1,27 @@
 @layout('layouts.master')
 
 @section('content')
-@include('layouts.pao')
+@include('layouts.pages')
+
+<style>
+  footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+}
+</style>
 
 <div class="container mt-3">
-  <table class="table table-dark">
+  <table class="table text-center">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nome</th>
+        <th scope="col">Endereço</th>
         <th scope="col">E-mail</th>
         <th scope="col">Telefone</th>
         <th scope="col">Cargo</th>
@@ -16,24 +29,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-      </tr>
+      @each(funcionario in funcionarios)
+        <tr>
+          <th scope="row">{{ ($loop.index + 1) }}</th>
+          <td>{{funcionario.usuario.nome_completo}}</td>
+          <td>{{funcionario.usuario.endereco.bairro}}, {{funcionario.usuario.endereco.rua}} - {{funcionario.usuario.endereco.numero}}</td>
+          <td>{{funcionario.usuario.email}}</td>
+          <td>{{funcionario.usuario.telefone}}</td>
+          <td>{{funcionario.cargo}}</td>
+          <td><i class="fas fa-paw"></i></td>
+        </tr>
+      @endeach
     </tbody>
   </table>
 </div>

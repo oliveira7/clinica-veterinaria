@@ -7,6 +7,10 @@ const Hash = use('Hash')
 const Model = use('Model')
 
 class User extends Model {
+  endereco () {
+    return this.hasOne('App/Models/Endereco', 'id' ,'usuario_id');
+  }
+
   static boot () {
     super.boot()
 

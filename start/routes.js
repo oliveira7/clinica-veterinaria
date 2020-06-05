@@ -19,12 +19,23 @@ const Route = use('Route')
 
 Route.on('/').render('frontend.home')
 
+//usuario
+Route.group(() => {
+  Route.get('/', 'UserController.create').as('users.create');
+  Route.post('/', 'UserController.store').as('users.store');
+}).prefix('usuario')
+
 Route.get('funcionario', 'UserController.funcionarioIndex').as('users.funcionarioIndex');
 Route.get('cliente', 'UserController.clienteIndex').as('users.clienteIndex');
-Route.get('usuario', 'UserController.create').as('users.create');
-Route.post('usuario', 'UserController.store').as('users.store');
 
+Route.get('cliente/:id/animal', 'AnimalController.index', ({ params }) => {
+  return `Cliente ${params.id}`
+}).as('animais.index')
 
-// Route.get('login', 'UserController.index')
-// Route.post('login', 'UserController.login')
-// Route.get('users/:id', 'UserController.show').middleware('auth')
+Route.get('cliente/:id/animal/create', 'AnimalController.create', ({ params }) => {
+  return `Cliente ${params.id}`
+}).as('animais.create')
+
+Route.post('cliente/:id/animal', 'AnimalController.store', ({ params }) => {
+  return `Cliente ${params.id}`
+}).as('animais.store')

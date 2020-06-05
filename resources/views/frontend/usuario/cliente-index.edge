@@ -1,41 +1,43 @@
 @layout('layouts.master')
 
 @section('content')
-@include('layouts.pao')
+@include('layouts.pages')
+
+<style>
+  footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+}
+</style>
 
 <div class="container mt-3">
-  <table class="table table-dark">
+  <table class="table text-center">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nome</th>
+        <th scope="col">Endereço</th>
         <th scope="col">E-mail</th>
         <th scope="col">Telefone</th>
         <th scope="col">Ações</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td><i class="fas fa-paw"></i></td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-        <td><i class="fas fa-paw"></i></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
-        <td><i class="fas fa-paw"></i></td>
-      </tr>
+      @each(cliente in clientes)
+        <tr>
+          <th scope="row">{{ ($loop.index + 1) }}</th>
+          <td>{{cliente.usuario.nome_completo}}</td>
+          <td>{{cliente.usuario.endereco.bairro}} {{cliente.usuario.endereco.rua}} - {{cliente.usuario.endereco.numero}}</td>
+          <td>{{cliente.usuario.email}}</td>
+          <td>{{cliente.usuario.telefone}}</td>
+          <td><a href="{{ route('animais.index', { id: cliente.id }) }}"><i class="fas fa-paw"></i></a></td>
+        </tr>
+      @endeach
     </tbody>
   </table>
 </div>

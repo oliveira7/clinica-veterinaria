@@ -1,7 +1,7 @@
 @layout('layouts.master')
 
 @section('content')
-@include('layouts.pao')
+@include('layouts.pages')
 
 <div class="p-responsive mt-4 mt-md-8"> 
   <div class="container py-3"> 
@@ -60,11 +60,11 @@
       <div class="form-group ">
         <label for="telefone">Tipo Usuário</label>
         <div class="col">
-          <input name="cliente" type="radio" value="cliente"/> 
+          <input name="tipo" type="radio" value="cliente"/> 
           <label for="cliente">Cliente</label>
         </div>
         <div class="col">
-          <input name="funcionario" type="radio" value="funcionario"/> 
+          <input name="tipo" type="radio" value="funcionario"/> 
           <label for="funcionario">Funcionario</label>
         </div>
       </div>
@@ -87,10 +87,10 @@
                           '<div class="input-group-prepend">'+
                             '<label class="input-group-text" for="cargo">Cargos</label>'+
                           '</div>'+
-                          '<select class="custom-select" id="cargo">'+
+                          '<select class="custom-select" id="cargo" name="cargo">'+
                             '<option selected>Escolha...</option>'+
-                            '<option value="1">Veterinário</option>'+
-                            '<option value="2">Atendente</option>'+
+                            '<option value="Veterinário">Veterinário</option>'+
+                            '<option value="Atendente">Atendente</option>'+
                           '</select>'+
                         '</div>'+
                       '</div>';

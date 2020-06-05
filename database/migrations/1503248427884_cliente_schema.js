@@ -7,6 +7,13 @@ class ClienteSchema extends Schema {
   up () {
     this.create('clientes', (table) => {
       table.increments()
+      table
+        .integer('usuario_id')
+        .unsigned()
+        .references('id')
+        .inTable('users')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
       table.timestamps()
     })
   }
