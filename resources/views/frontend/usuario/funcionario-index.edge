@@ -1,5 +1,6 @@
 @layout('layouts.master')
 
+
 @section('content')
 @include('layouts.pages')
 
@@ -15,8 +16,18 @@
 }
 </style>
 
+<script>
+  $(document).ready(function() {
+    $('#funcionarioTable').DataTable( {
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+        }
+    });
+  });
+</script>
+
 <div class="container mt-3">
-  <table class="table text-center">
+  <table class="table text-center" id="funcionarioTable">
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -45,3 +56,6 @@
   </table>
 </div>
 @endsection
+
+
+

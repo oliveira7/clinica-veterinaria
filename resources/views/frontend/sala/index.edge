@@ -15,11 +15,21 @@
 }
 </style>
 
+<script>
+  $(document).ready(function() {
+    $('#salaTable').DataTable( {
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+        }
+    });
+  });
+</script>
+
 <div class="container mt-3">
   <div class="text-right">
     {{--  <a type="button" href="{{ route('animal.create', { id: cliente_id }) }}" class="btn btn-primary btn-sm">Novo Animal</a>  --}}
   </div>
-  <table class="table text-center">
+  <table class="table text-center" id="salaTable">
     <thead>
       <tr>
         <th scope="col">#</th>

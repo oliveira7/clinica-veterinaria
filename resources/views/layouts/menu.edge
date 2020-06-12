@@ -10,24 +10,25 @@
       <div class="navbar-nav ml-auto">
           <!-- Funcionário -->
           <div class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdownFuncionarios" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Usuários
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownFuncionarios">
-                <a class="dropdown-item" href="{{ route('user.funcionarioIndex') }}">Funcionários</a>
-                <a class="dropdown-item" href="{{ route('user.clienteIndex') }}">Clientes</a>
-                <a class="dropdown-item" href="{{ route('user.create') }}">Novo Usuário</a>
-              </div>
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownFuncionarios" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Usuários
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownFuncionarios">
+              <a class="dropdown-item" href="{{ route('user.create') }}">Novo Usuário</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('user.funcionarioIndex') }}">Funcionários</a>
+              <a class="dropdown-item" href="{{ route('user.clienteIndex') }}">Clientes</a>
+            </div>
           </div>
-          
           <!-- Consulta -->
           <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdownConsultas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Consultas
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownConsultas">
-              <a class="dropdown-item" href="">Consultas</a>
-              <a class="dropdown-item" href="">Marcar Consulta</a>
+              <a type="button" class="dropdown-item" data-toggle="modal" data-target="#cpfModal">Marcar Consulta</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('consulta.index') }}">Consultas</a>
             </div>
           </div>
           <!-- Sala -->
@@ -36,19 +37,24 @@
                Sala
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownSalas">
-              <a class="dropdown-item" href="{{ route('sala.index') }}">Salas</a>
               <a class="dropdown-item" href="{{ route('sala.create') }}">Cadastrar Sala</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('sala.index') }}">Salas</a>
             </div>
           </div>
           <!-- Medicamento -->
           <div class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdownConsultas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Medicamentos
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownConsultas">
-                <a class="dropdown-item" href="{{ route('medicamento.index') }}">Medicamentos</a>
-                <a class="dropdown-item" href="{{ route('medicamento.create') }}">Cadastrar Medicamentos</a>
-              </div>
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownConsultas" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Medicamentos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownConsultas">
+              <a class="dropdown-item" href="{{ route('medicamento.create') }}">Cadastrar Medicamentos</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ route('medicamento.index') }}">Medicamentos</a>
+            </div>
+          </div>
+          <div class="nav-item">
+            <a class="nav-link" href="{{ route('user.logout') }}">Sair</a>
           </div>
       </div>
     </div>

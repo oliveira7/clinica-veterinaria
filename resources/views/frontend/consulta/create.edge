@@ -1,0 +1,60 @@
+@layout('layouts.master')
+
+@section('content')
+@include('layouts.pages')
+
+<style>
+  footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+  }
+</style>
+
+<div class="p-responsive mt-4 mt-md-8"> 
+  <div class="container py-3"> 
+    <form method="post" action="{{route('consulta.store', { id: cliente[0].id })}}">
+      {{ csrfField() }}
+      <div class="form-group">
+        <label for="nome">Nome cliente</label>
+        <input readonly type="text" class="form-control" id="nome" name="nome" value="{{cliente[0].nome_completo}}" required>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="exampleFormControlSelect1">Animal</label>
+            <select class="form-control" id="tipo" name="tipo" required>
+              <option readonly value="">Selecione...</option>
+              @each(animal in animais)
+                <option value="{{animal.id}}">{{animal.nome}}</option>
+              @endeach
+            </select>
+          </div>
+          <div class="col">
+            <label for="exampleFormControlSelect1">Veterinário</label>
+            <select class="form-control" id="tipo" name="tipo" required>
+              <option readonly value="">Selecione...</option>
+              @each(veterinario in veterinarios)
+                <option value="{{veterinario.usuario.id}}">{{veterinario.usuario.nome_completo}}</option>
+              @endeach
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="date">Data</label>
+        <input type="Datetime" class="form-control" id="date" name="date" required>
+      </div>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+        {{--  <a type="button" href="{{route('animal.index', { id: cliente_id })}}" class="btn btn-secondary btn-sm">Voltar</a>  --}}
+      </div>
+    </form>
+  </div>
+</div>
+
+@endsection

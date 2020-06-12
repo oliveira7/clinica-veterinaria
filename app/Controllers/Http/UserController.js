@@ -11,6 +11,7 @@ class UserController {
     const funcionarios = await Funcionario
       .query()
       .with('usuario.endereco')
+      .where('cargo','!=','Adm')
       .fetch()
 
     return response.send(view.render('frontend.usuario.funcionario-index', { funcionarios: funcionarios.toJSON() }));
@@ -170,19 +171,22 @@ class UserController {
     return response.redirect('/cliente', { clientes: clientes.toJSON() });
   }
 
-  async login ({ request, auth }) {
-    console.log(request.all());
-    const { email, password } = request.all()
-    await auth.attempt(email, password)
+  async index({ response, view }) {
 
-    return 'Logged in successfully'
+    return response.send(view.render('auth.login'));
   }
 
-  show ({ auth, params }) {
-    if (auth.user.id !== Number(params.id)) {
-      return 'You cannot see someone else\'s profile'
-    }
-    return auth.user
+  async login ({ response, request, auth }) {
+    const { email, password } = request.all();
+    await auth.attempt(email, password);
+
+    return response.redirect('/');
+  }
+
+  async logout ({ response,auth }) {
+    await auth.logout();
+
+    return response.redirect('/login');
   }
 }
 

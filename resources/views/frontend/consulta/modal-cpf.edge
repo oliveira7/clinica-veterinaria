@@ -1,0 +1,45 @@
+<div class="modal fade" id="cpfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">CPF Cliente </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="cpfForm" action="{{route('consulta.create')}}">
+          {{ csrfField() }}
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Cliente:</label>
+            <input type="text" class="form-control" id="cpfValue" name="cpfValue" placeholder="Digite o cpf do cliente...">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary" form="cpfForm" value="Submit">Marcar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  <script>
+  $(document).ready(function(){
+    console.log($("#cpfModal").val());
+    $("#submitCPF").click(function(e){
+      e.preventDefault(); 
+    
+      $.getJSON('/cpf-cliente', {
+        cpf: $('#cpfValue').val(),
+      }, function (data, status) {
+        console.log(data.cliente.length);
+        if (data.cliente.length >= 1) {
+          window.location.href = 'http://localhost:3333/consulta/create';
+        } else {
+          alert("Cpf errado.");
+        }
+      });
+    });
+  });
+</script>  -->

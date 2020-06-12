@@ -7,6 +7,10 @@ class Cliente extends Model {
   usuario () {
     return this.hasOne('App/Models/User', 'usuario_id', 'id');
   }
+ 
+  animais () {
+    return this.hasMany('App/Models/Animal', 'cliente_id', 'id');
+  }
 }
 
 module.exports = Cliente
