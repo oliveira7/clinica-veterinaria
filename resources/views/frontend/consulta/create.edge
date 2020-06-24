@@ -15,6 +15,12 @@
   }
 </style>
 
+<script>
+  $(document).ready(function() {
+    $('#date').datetimepicker();  
+  });
+</script>
+
 <div class="p-responsive mt-4 mt-md-8"> 
   <div class="container py-3"> 
     <form method="post" action="{{route('consulta.store', { id: cliente[0].id })}}">
