@@ -1,0 +1,72 @@
+@layout('layouts.master')
+
+@section('content')
+@include('layouts.pages')
+
+<style>
+  footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+}
+</style>
+
+<script>
+  $(document).ready(function() {
+    $('#animalTable').DataTable( {
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+        }
+    });
+    $('#animalTable').DataTable( {
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+        }
+    });
+  });
+</script>
+
+<div class="container mt-3">
+  <table class="table text-center" id="consultaTable">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Animal</th>
+        <th scope="col">Local</th>
+        <th scope="col">Veterinario(a)</th>
+        <th scope="col">Data</th>
+        <th scope="col">Confimação</th>
+        <th scope="col" colspan="3">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      @each(consulta in consultas)
+        <tr>
+          <th scope="row">{{ ($loop.index + 1) }}</th>
+          <td>{{consulta.animal.cliente.usuario.nome_completo}}</td>
+          <td>{{consulta.animal.nome}}</td>
+          <td>{{consulta.sala.numero}} - {{consulta.sala.descricao}}</td>
+          <td>{{consulta.funcionario.usuario.nome_completo}}</td>
+          <td>{{consulta.data}} - {{consulta.horario}}</td>
+          <td>
+            @if(consulta.sala.numero === true)
+              <i style="color: grean" class="fas fa-check-circle"></i>
+            @else 
+              <i style="color: red" class="fas fa-times-circle"></i>
+            @endif
+          </td>
+          <td class="pl-0 pr-0"><a style="color:lightslategray" href="{{ route('prontuario.create', { id: consulta.id }) }}"><i class="fas fa-laptop-medical"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color: blue;" href="{{ route('consulta.edit', { id: consulta.id }) }}"><i class="fas fa-edit"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color: red;" href=""><i class="fas fa-trash"></i></a></td>
+        </tr>
+      @endeach
+    </tbody>
+  </table>
+</div>
+
+@endsection

@@ -1,0 +1,90 @@
+
+@layout('layouts.master')
+
+@section('content')
+@include('layouts.pages')
+
+
+
+<script>
+  jQuery.datetimepicker.setLocale('pt-BR');
+  $(document).ready(() => {
+    $('#date').datetimepicker({
+    allowTimes:[
+      '09:00',
+      '09:30',
+      '10:00',
+      '10:30',
+      '11:00',
+      '11:30',
+      '13:30',
+      '14:00',
+      '14:30',
+      '15:00',
+      '15:30',
+      '16:00',
+      '16:30',
+    ],
+    defaultTime:'00:00',
+    timepicker:true,
+    format:'d/m/Y H:i',
+    formatTime:'H:i'
+    });
+  });
+</script>
+
+<div class="p-responsive mt-4 mt-md-8"> 
+  <div class="container py-3"> 
+    <form method="post" action="">
+      {{ csrfField() }}
+      <div class="form-group">
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="date">sinais_clinicos</label>
+            <textarea type="text" class="form-control" id="date" name="date" required></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="date">exames</label>
+            <textarea type="text" class="form-control" id="date" name="date" required></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="date">prescricoes</label>
+            <textarea type="text" class="form-control" id="date" name="date" required></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="date">peso</label>
+            <input type="text" class="form-control" id="date" name="date" required>
+          </div>
+          <div class="col">
+            <label for="date">dose_vermifogo</label>
+            <input readonly type="text" class="form-control" id="nome" name="nome" required>
+          </div>
+          <div class="col">
+            <label for="date">ultimo_atendimento</label>
+            <input type="text" class="form-control" id="date" name="date" required>
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+        {{--  <a type="button" href="{{route('animal.index', { id: cliente_id })}}" class="btn btn-secondary btn-sm">Voltar</a>  --}}
+      </div>
+    </form>
+  </div>
+</div>
+
+@endsection

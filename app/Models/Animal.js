@@ -4,7 +4,7 @@
 const Model = use('Model')
 
 class Animal extends Model {
-  usuario () {
+  cliente () {
     return this.hasOne('App/Models/Cliente', 'cliente_id', 'id');
   }
 }

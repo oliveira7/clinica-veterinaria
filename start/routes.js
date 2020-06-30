@@ -91,6 +91,18 @@ Route.group(() => {
   Route.get('consulta', 'ConsultaController.index').as('consulta.index');
   Route.post('consulta/create', 'ConsultaController.create').as('consulta.create');
   Route.post('consulta', 'ConsultaController.store').as('consulta.store');
+  Route.get('consulta/:id/edit', 'ConsultaController.edit').as('consulta.edit');
+  Route.post('consulta/:id', 'ConsultaController.update', ({ params }) => {
+    return `consulta ${params.id}`
+  }).as('consulta.update');
+
+  //prontuario
+  Route.get('cliente/:id/animal/:idAnimal/prontuario', 'ProntuarioController.index', ({ params }) => {
+    return `Cliente ${params.id}` + `Animal ${params.idAnimal}`
+  }).as('prontuario.index'); //tela do animal
+  Route.get('consulta/:id/prontuario/create', 'ProntuarioController.create').as('prontuario.create'); // começando a consulta
+  Route.post('consulta/:id/prontuario', 'ProntuarioController.store').as('prontuario.store'); // gravando
+
 }).middleware(['authVerif']);
 
 // Route.get('cpf-cliente', 'ConsultaController.cpfCliente');

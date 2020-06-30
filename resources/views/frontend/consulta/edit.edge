@@ -42,13 +42,21 @@
   });
 </script>
 
+<script>
+  $("button").click(function(){
+    $.ajax({url: "demo_test.txt", success: function(result){
+      $("#div1").html(result);
+    }});
+  });
+</script>
+
 <div class="p-responsive mt-4 mt-md-8"> 
   <div class="container py-3"> 
-    <form method="post" action="{{route('consulta.store', { id: cliente.id })}}">
+    <form method="post" action="{{route('consulta.update', { id: consulta.id })}}">
       {{ csrfField() }}
       <div class="form-group">
         <label for="nome">Nome cliente</label>
-        <input readonly type="text" class="form-control" id="nome" name="nome" value="{{cliente.nome_completo}}" required>
+        <input readonly type="text" class="form-control" id="nome" name="nome" value="{{consulta.animal.cliente.usuario.nome_completo}}" required>
       </div>
       <div class="form-group">
         <div class="row">
@@ -57,7 +65,11 @@
             <select class="form-control" id="animalId" name="animalId" required>
               <option readonly value="">Selecione...</option>
               @each(animal in animais)
-                <option value="{{animal.id}}">{{animal.nome}}</option>
+                @if(consulta.animal.id == animal.id)
+                  <option selected value="{{animal.id}}">{{animal.nome}}</option>
+                @else
+                  <option value="{{animal.id}}">{{animal.nome}}</option>
+                @endif
               @endeach
             </select>
           </div>
@@ -66,7 +78,11 @@
             <select class="form-control" id="veterinarioId" name="veterinarioId" required>
               <option readonly value="">Selecione...</option>
               @each(veterinario in veterinarios)
-                <option value="{{veterinario.id}}">{{veterinario.usuario.nome_completo}}</option>
+                @if(consulta.funcionario.id == veterinario.id)
+                  <option selected value="{{veterinario.id}}">{{veterinario.usuario.nome_completo}}</option>
+                @else
+                  <option value="{{veterinario.id}}">{{veterinario.usuario.nome_completo}}</option>
+                @endif
               @endeach
             </select>
           </div>
@@ -79,13 +95,17 @@
             <select class="form-control" id="salaId" name="salaId" required>
               <option readonly value="">Selecione...</option>
               @each(sala in salas)
-                <option value="{{sala.id}}">{{sala.numero}} - {{sala.descricao}}</option>
+               @if(consulta.sala.id == sala.id)
+                  <option selected value="{{sala.id}}">{{sala.numero}} {{sala.descricao}}</option>
+                @else
+                  <option value="{{sala.id}}">{{sala.numero}} - {{sala.descricao}}</option>
+                @endif
               @endeach
             </select>
           </div>
           <div class="col">
             <label for="date">Data</label>
-            <input type="text" class="form-control" id="date" name="date" required>
+            <input type="text" class="form-control" id="date" name="date" value="{{consulta.data}} {{consulta.horario}}" required>
           </div>
         </div>
       </div>

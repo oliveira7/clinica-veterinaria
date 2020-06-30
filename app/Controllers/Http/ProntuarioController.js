@@ -3,29 +3,22 @@ const Database = use('Database')
 
 const Animal = use("App/Models/Animal");
 
-class AnimalController {
+class ProntuarioController {
   async index({ params, response, view }) {
-        const animais = await Animal
-        .query()
-        .with('animal')
-        .with('sala')
-        .with('funcionario')
-        .fetch();
-    // const animais = await Database
-    //   .from('animals')
-    //   .where('cliente_id', params.id);
-      
-      console.log(animais)
 
-    return response.send(view.render('frontend.animal.index', { animais: animais, cliente_id: params.id }));
+    return response.send(view.render('frontend.prontuario.index'));
   }
 
   async create({ params, response, view }) {
 
-    return response.send(view.render('frontend.animal.create', { cliente_id: params.id }));
+    return response.send(view.render('frontend.prontuario.create'));
   }
 
   async store({ params, request, response }) {
+
+    // consulta.finalizada = true atualizar pra true da consulta realizada
+    // consulta.confimada = true atualizar para true se estiver false...
+
     const data = request.all();
 
     const animal = new Animal()
@@ -60,4 +53,4 @@ class AnimalController {
   }
 }
 
-module.exports = AnimalController
+module.exports = ProntuarioController

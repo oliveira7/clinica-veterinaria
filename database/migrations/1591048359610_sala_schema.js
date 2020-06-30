@@ -9,7 +9,7 @@ class SalaSchema extends Schema {
       table.increments()
       table.string('numero').notNullable()
       table.string('descricao', 255).notNullable()
-      table.boolean('disponibilidade')
+      table.string('horario').nullable()
       table.timestamps()
     })
   }
