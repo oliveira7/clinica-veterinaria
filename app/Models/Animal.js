@@ -7,6 +7,9 @@ class Animal extends Model {
   cliente () {
     return this.hasOne('App/Models/Cliente', 'cliente_id', 'id');
   }
+  prontuario () {
+    return this.hasOne('App/Models/Prontuario', 'prontuario_id', 'id');
+  }
 }
 
 module.exports = Animal

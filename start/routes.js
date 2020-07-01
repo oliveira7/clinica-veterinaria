@@ -40,6 +40,7 @@ Route.group(() => {
 
   //cliente
   Route.get('cliente', 'UserController.clienteIndex').as('user.clienteIndex');
+
   Route.get('cliente/:id/edit', 'UserController.clienteEdit', ({ params }) => {
     return `User ${params.id}`
   }).as('cliente.edit');
@@ -99,10 +100,26 @@ Route.group(() => {
   //prontuario
   Route.get('cliente/:id/animal/:idAnimal/prontuario', 'ProntuarioController.index', ({ params }) => {
     return `Cliente ${params.id}` + `Animal ${params.idAnimal}`
-  }).as('prontuario.index'); //tela do animal
-  Route.get('consulta/:id/prontuario/create', 'ProntuarioController.create').as('prontuario.create'); // começando a consulta
-  Route.post('consulta/:id/prontuario', 'ProntuarioController.store').as('prontuario.store'); // gravando
+  }).as('prontuario.index'); 
 
-}).middleware(['authVerif']);
+  Route.get('consulta/:id/animal/:idAnimal/prontuario/create', 'ProntuarioController.create', ({ params }) => {
+    return `Cliente ${params.id}` + `Animal ${params.idAnimal}`
+  }).as('prontuario.create'); 
+
+  Route.post('consulta/:id/animal/:idAnimal/prontuario', 'ProntuarioController.store', ({ params }) => {
+    return `Cliente ${params.id}` + `Animal ${params.idAnimal}`
+  }).as('prontuario.store'); 
+
+  //avaliação
+  Route.get('cliente/:id/avaliacao', 'AvaliacaoController.index').as('avaliacao.index');
+  Route.get('cliente/:id/avaliacao/create', 'AvaliacaoController.create').as('avaliacao.create');
+  Route.post('cliente/:id/avaliacao', 'AvaliacaoController.store').as('avaliacao.store');
+
+  //cliente visualização dados pessoais
+  Route.get('cliente/:id/show', 'UserController.show').as('user.show');
+
+  //animais do cliente logado
+  Route.get('cliente/:id/animal/show', 'AnimalController.show').as('animal.show');
+}).middleware(['auth']);
 
 // Route.get('cpf-cliente', 'ConsultaController.cpfCliente');

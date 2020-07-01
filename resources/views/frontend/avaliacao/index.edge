@@ -1,0 +1,55 @@
+@layout('layouts.master')
+
+@section('content')
+@include('layouts.pages')
+
+<style>
+  footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+}
+</style>
+
+<script>
+  $(document).ready(function() {
+    $('#avaliacaoTable').DataTable( {
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+        }
+    });
+  });
+</script>
+
+<div class="container mt-3">
+  <table class="table text-center" id="avaliacaoTable">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Experiência</th>
+        <th scope="col">Veterinário(a)</th>
+        <th scope="col">Instalação</th>
+        <th scope="col">Atendimento</th>
+        <th scope="col">Feedback</th>
+      </tr>
+    </thead>
+    <tbody>
+      @each(avaliacao in avaliacoes)
+        <tr>
+          <th scope="row">{{ ($loop.index + 1) }}</th>
+          <td>{{avaliacao.av_experiencia}}</td>
+          <td>{{avaliacao.av_veterinario}}</td>
+          <td>{{avaliacao.av_instalacao}}</td>
+          <td>{{avaliacao.av_atendimento}}</td>
+          <td>{{avaliacao.feedback}}</td>
+        </tr>
+      @endeach
+    </tbody>
+  </table>
+</div>
+
+@endsection

@@ -5,17 +5,9 @@ const Animal = use("App/Models/Animal");
 
 class AnimalController {
   async index({ params, response, view }) {
-        const animais = await Animal
-        .query()
-        .with('animal')
-        .with('sala')
-        .with('funcionario')
-        .fetch();
-    // const animais = await Database
-    //   .from('animals')
-    //   .where('cliente_id', params.id);
-      
-      console.log(animais)
+    const animais = await Database
+      .from('animals')
+      .where('cliente_id', params.id);
 
     return response.send(view.render('frontend.animal.index', { animais: animais, cliente_id: params.id }));
   }
@@ -57,6 +49,14 @@ class AnimalController {
 
     const animais = await Animal.all();
     return response.redirect('/cliente/'+params.id+'/animal', { animais: animais.toJSON() });
+  }
+
+  async show({ params, response, view }) {
+    const animais = await Database
+      .from('animals')
+      .where('cliente_id', params.id);
+    
+    return response.send(view.render('frontend.animal.show', { animais: animais }));
   }
 }
 

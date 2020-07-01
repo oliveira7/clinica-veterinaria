@@ -19,16 +19,13 @@
   $(document).ready(function() {
     $('#animalTable').DataTable( {
         "language": {
-            "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
+          "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json"
         }
     });
   });
 </script>
 
 <div class="container mt-3">
-  <div class="text-right">
-    <a type="button" href="{{ route('animal.create', { id: cliente_id }) }}" class="btn btn-primary btn-sm">Novo Animal</a>
-  </div>
   <table class="table text-center" id="animalTable">
     <thead>
       <tr>
@@ -36,7 +33,7 @@
         <th scope="col">Nome</th>
         <th scope="col">Espécie</th>
         <th scope="col">Raça</th>
-        <th scope="col" colspan="3">Ações</th>
+        <th scope="col">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -46,9 +43,7 @@
           <td>{{animal.nome}}</td>
           <td>{{animal.especie}}</td>
           <td>{{animal.raca}}</td>
-          <td class="pl-0 pr-0"><a style="color:lightslategray" href="{{ route('prontuario.index', { id: cliente_id,  idAnimal: animal.id }) }}"><i class="fas fa-notes-medical"></i></a></td>
-          <td class="pl-0 pr-0"><a style="color: blue;" href="{{ route('animal.edit', { id: cliente_id,  idAnimal: animal.id }) }}"><i class="fas fa-edit"></i></a></td>
-          <td class="pl-0 pr-0"><a style="color: red;" href=""><i class="fas fa-trash"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color:lightslategray"  href="{{ route('prontuario.index', { id: auth.user.getRelated('cliente').id,  idAnimal: animal.id }) }}"><i class="fas fa-notes-medical"></i></a></td>
         </tr>
       @endeach
     </tbody>

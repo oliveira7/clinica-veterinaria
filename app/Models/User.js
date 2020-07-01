@@ -10,8 +10,13 @@ class User extends Model {
   endereco () {
     return this.hasOne('App/Models/Endereco', 'id' ,'usuario_id');
   }
+
   cliente () {
     return this.hasOne('App/Models/Cliente', 'id' ,'usuario_id');
+  }
+
+  funcionario () {
+    return this.hasOne('App/Models/Funcionario', 'id' ,'usuario_id');
   }
 
   static boot () {

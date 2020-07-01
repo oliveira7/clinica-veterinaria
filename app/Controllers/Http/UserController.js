@@ -68,26 +68,6 @@ class UserController {
     }
   }
 
-  async edit({ params, request, response }) {
-    const animal = await Animal.find(parseInt(params.idAnimal));
-   
-    return response.send(view.render('frontend.animal.edit', { animal: animal, cliente_id: params.id, animal_id: params.idAnimal }));
-  }
-
-  async update({ params, request, response }) {
-    const data = request.all();
-
-    const animal = await Animal.find(parseInt(params.idAnimal));
-    animal.nome = data.nome
-    animal.especie = data.especie
-    animal.raca = data.raca
-    animal.cliente_id = params.id
-    await animal.save();
-
-    const animais = await Animal.all();
-    return response.redirect('/cliente/'+params.id+'/animal', { animais: animais.toJSON() });
-  }
-
   async funcionarioEdit({ params, response, view }) {
     const funcionario = await Funcionario
       .query()
@@ -187,6 +167,16 @@ class UserController {
     await auth.logout();
 
     return response.redirect('/login');
+  }
+
+  async show({ params, response, view }) {
+    const cliente = await Cliente
+      .query()
+      .where('id', parseInt(params.id))
+      .with('usuario.endereco')
+      .first();
+     
+    return response.send(view.render('frontend.usuario.cliente-show', { cliente: cliente.toJSON(), idCliente: params.id }));
   }
 }
 

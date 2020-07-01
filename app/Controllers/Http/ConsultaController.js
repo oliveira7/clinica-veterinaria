@@ -15,7 +15,6 @@ class ConsultaController {
     .with('sala')
     .with('funcionario.usuario')
     .fetch();
-   console.log(consultas);
 
     return response.send(view.render('frontend.consulta.index', { consultas: consultas.toJSON() }));
   }

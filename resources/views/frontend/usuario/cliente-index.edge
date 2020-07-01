@@ -40,7 +40,7 @@
     <tbody>
       @each(cliente in clientes)
         <tr>
-          <th scope="row">{{ ($loop.index + 1) }}</th>
+          <td scope="row">{{ ($loop.index + 1) }}</td>
           <td>{{cliente.usuario.nome_completo}}</td>
           <td>{{cliente.usuario.endereco.bairro}} {{cliente.usuario.endereco.rua}} - {{cliente.usuario.endereco.numero}}</td>
           <td>{{cliente.usuario.email}}</td>

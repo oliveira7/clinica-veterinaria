@@ -1,0 +1,63 @@
+@layout('layouts.master')
+
+@section('content')
+@include('layouts.pages')
+
+<div class="p-responsive mt-4 mt-md-8"> 
+  <div class="container py-3"> 
+    <form method="post">
+      {{ csrfField() }}
+      <div class="form-group">
+        <label for="nomeCompleto">Nome Completo</label>
+        <input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" value="{{cliente.usuario.nome_completo}}" readonly>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="cidade">Cidade</label>
+            <input type="text" class="form-control" id="cidade" name="cidade" value="{{cliente.usuario.endereco.cidade}}" readonly>
+          </div>
+          <div class="col">
+            <label for="bairro">Bairro</label>
+            <input type="text" class="form-control" id="bairro" name="bairro" value="{{cliente.usuario.endereco.bairro}}" readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="rua">Rua</label>
+            <input type="text" class="form-control" id="rua"  name="rua" value="{{cliente.usuario.endereco.rua}}" readonly>
+          </div>
+          <div class="col-2">
+            <label for="numero">Nº</label>
+            <input type="number" class="form-control" id="numero" name="numero" value="{{cliente.usuario.endereco.numero}}" readonly>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{cliente.usuario.email}}" readonly>
+          </div>
+        </div>
+      </div>
+      <div class="form-group input-group-sm">
+        <div class="row">
+          <div class="col">
+            <label for="cpf">CPF</label>
+            <input type="text" class="form-control" id="cpf" name="cpf" value="{{cliente.usuario.cpf}}" readonly>
+          </div>
+          <div class="col">
+            <label for="telefone">Telefone</label>
+            <input type="text" class="form-control" id="telefone"  name="telefone" value="{{cliente.usuario.telefone}}" readonly>
+          </div>
+        </div>
+      </div>
+      <div class="text-right">
+        <a type="button" href="{{'http://localhost:3333/'}}" class="btn btn-secondary btn-sm">Voltar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+@endsection

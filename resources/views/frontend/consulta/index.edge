@@ -60,7 +60,7 @@
               <i style="color: red" class="fas fa-times-circle"></i>
             @endif
           </td>
-          <td class="pl-0 pr-0"><a style="color:lightslategray" href="{{ route('prontuario.create', { id: consulta.id }) }}"><i class="fas fa-laptop-medical"></i></a></td>
+          <td class="pl-0 pr-0"><a style="color:lightslategray" href="{{ route('prontuario.create', { id: consulta.id, idAnimal: consulta.animal.id }) }}"><i class="fas fa-laptop-medical"></i></a></td>
           <td class="pl-0 pr-0"><a style="color: blue;" href="{{ route('consulta.edit', { id: consulta.id }) }}"><i class="fas fa-edit"></i></a></td>
           <td class="pl-0 pr-0"><a style="color: red;" href=""><i class="fas fa-trash"></i></a></td>
         </tr>
